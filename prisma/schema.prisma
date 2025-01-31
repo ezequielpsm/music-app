@@ -18,3 +18,8 @@ model Music {
   author String 
   name  String
 }
+
+model Skill {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId 
+  name  String
+}
