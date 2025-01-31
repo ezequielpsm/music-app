@@ -11,6 +11,4 @@ export class SkillController {
   create(@Body() createSkill: CreateSkill): Promise<Skill> {
     return this.skillService.create(createSkill);
   }
-
-
 }

@@ -1,5 +1,3 @@
 export class CreateSkill {
-    name: string;
+  name: string;
 }
-
-

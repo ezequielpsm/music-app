@@ -11,4 +11,3 @@ export class SkillService {
     return this.prismaService.skill.create({ data: { name } });
   }
 }
-

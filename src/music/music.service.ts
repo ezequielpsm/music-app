@@ -1,7 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Music } from '@prisma/client';
-import { CreateMusic, UpdateMusic, UpdateMusicParams } from './music.dto';
+import {
+  CreateMusic,
+  DeleteMusicParams,
+  GetMusicParams,
+  UpdateMusic,
+  UpdateMusicParams,
+} from './music.dto';
 
 @Injectable()
 export class MusicService {
@@ -11,9 +17,20 @@ export class MusicService {
   }
 
   update(
-    {id}: UpdateMusicParams,
-    { author, name }: UpdateMusic): Promise<Music> {
-    return this.prismaService.music.update({ data: { name, author } , where: { id} });
+    { id }: UpdateMusicParams,
+    { author, name }: UpdateMusic,
+  ): Promise<Music> {
+    return this.prismaService.music.update({
+      data: { name, author },
+      where: { id },
+    });
   }
 
+  delete({ id }: DeleteMusicParams): Promise<Music> {
+    return this.prismaService.music.delete({ where: { id } });
+  }
+
+  get({ author, name }: GetMusicParams): Promise<Music[]> {
+    return this.prismaService.music.findMany({ where: { author, name } });
+  }
 }
